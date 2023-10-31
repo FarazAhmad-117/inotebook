@@ -1,11 +1,11 @@
 import React from 'react'
 import Notes from './Notes'
 
-export default function Home() {
+export default function Home(props) {
 
     return (
         <div>
-            <div className="container my-3">
+            <div className="container my-3 mt-6 ">
                 <h2>Add Note</h2>
                 {/* // A form to add Notes */}
                 <form className='my-3'>
@@ -25,7 +25,7 @@ export default function Home() {
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <Notes/>
+            <Notes showAlert = {props.showAlert}/>
         </div>
     )
 }

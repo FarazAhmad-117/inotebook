@@ -20,7 +20,7 @@ export default function Navbar(props) {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
+            <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark" >
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">{props.heading}</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
