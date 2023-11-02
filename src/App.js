@@ -23,7 +23,7 @@ export default function App() {
     })
     setTimeout(()=>{
       setAlert(null);
-    },2000);
+    },2500);
   }
 
   return (
