@@ -1,11 +1,12 @@
 import React from 'react'
-import{Link,useLocation} from 'react-router-dom';
+import{Link,useLocation, useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
 
 export default function Navbar(props) {
 
+    const navigate = useNavigate();
     // Useful but At this moment I am using a new type;
     // const handleClick=(event)=>{
     //     let links = document.querySelectorAll('.nav-link');
@@ -35,10 +36,11 @@ export default function Navbar(props) {
                                 <Link className={`nav-link ${location.pathname==='/about'?'active':' '}`}  to="/about">About</Link>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        {!localStorage.getItem('authToken')?<form className="d-flex" role="search">
+                            <Link className="btn btn-primary mx-2" role="button" to='/login'>Login</Link>
+                            <Link className="btn btn-primary mx-2" role="button" to='/signup'>Signup</Link>
+                        </form>:
+                        <button className='btn btn-primary mx-2' onClick={()=>{localStorage.removeItem('authToken');navigate("/login")}}>Logout</button>}
                     </div>
                 </div>
             </nav>

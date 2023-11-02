@@ -3,6 +3,9 @@ import { useState } from "react";
 
 
 const NoteState = (props) => {
+    const token = localStorage.getItem('authToken');
+    const [authToken,setAuthToken] = useState(token);
+
     let host = "http://localhost:5000";
     const notesInitial = [];
 
@@ -16,7 +19,7 @@ const NoteState = (props) => {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzODg4MGMyOGU4Zjg0Mjg3OTE0Y2I3In0sImlhdCI6MTY5ODI0MDgwNX0.CYQdMPocpWANdTJfpnsx7aJRkUwN0F_-cMTfD_TJnFM" // Replace with your actual token
+                    "auth-token": authToken 
                 }
             });
     
@@ -38,7 +41,7 @@ const NoteState = (props) => {
             method:'POST',  // POST "/api/notes/addnote"
             headers: {
                 "Content-Type": "application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzODg4MGMyOGU4Zjg0Mjg3OTE0Y2I3In0sImlhdCI6MTY5ODI0MDgwNX0.CYQdMPocpWANdTJfpnsx7aJRkUwN0F_-cMTfD_TJnFM"
+                "auth-token":authToken
             },
             body: JSON.stringify({title,description,tag})
         });
@@ -62,7 +65,7 @@ const NoteState = (props) => {
             method:'DELETE',  
             headers: {
                 "Content-Type": "application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzODg4MGMyOGU4Zjg0Mjg3OTE0Y2I3In0sImlhdCI6MTY5ODI0MDgwNX0.CYQdMPocpWANdTJfpnsx7aJRkUwN0F_-cMTfD_TJnFM"
+                "auth-token":authToken
             }
         });
         // eslint-disable-next-line
@@ -77,7 +80,7 @@ const NoteState = (props) => {
             method:'PUT',  // PUT "/api/notes/updatenote/:id"
             headers: {
                 "Content-Type": "application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzODg4MGMyOGU4Zjg0Mjg3OTE0Y2I3In0sImlhdCI6MTY5ODI0MDgwNX0.CYQdMPocpWANdTJfpnsx7aJRkUwN0F_-cMTfD_TJnFM"
+                "auth-token":authToken
             },
             body: JSON.stringify({title,description,tag})
         });
@@ -98,7 +101,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <NoteContext.Provider value={{notes,addNote,deleteNote,editNote,getNotes}} >
+        <NoteContext.Provider value={{notes,addNote,deleteNote,editNote,getNotes,setAuthToken,authToken}} >
             {props.children}
         </NoteContext.Provider>
     )
